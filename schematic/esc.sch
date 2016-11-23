@@ -17,7 +17,6 @@ LIBS:speakers
 LIBS:transform
 LIBS:transist
 LIBS:wireless
-LIBS:esc-cache
 EELAYER 25 0
 EELAYER END
 $Descr A3 16535 11693
@@ -293,9 +292,9 @@ Text GLabel 12900 6050 0    60   UnSpc ~ 0
 adc_u
 Text GLabel 6750 10250 0    60   UnSpc ~ 0
 motor_a
-Text GLabel 11650 6250 0    60   UnSpc ~ 0
+Text GLabel 12900 6850 0    60   UnSpc ~ 0
 motor_u_lo
-Text GLabel 11700 6100 0    60   UnSpc ~ 0
+Text GLabel 12900 5250 0    60   UnSpc ~ 0
 motor_u_hi
 $Comp
 L ATMEGA88PA-AU U?
@@ -336,7 +335,7 @@ Text GLabel 12900 5450 0    60   UnSpc ~ 0
 isp_mosi
 Text GLabel 12900 5650 0    60   UnSpc ~ 0
 isp_sck
-Text GLabel 11600 5400 0    60   UnSpc ~ 0
+Text GLabel 12100 6650 0    60   UnSpc ~ 0
 isp_rst
 Wire Wire Line
 	12900 5450 13150 5450
@@ -579,4 +578,169 @@ F 3 "" H 2850 3700 60  0000 C CNN
 	1    2850 3750
 	1    0    0    -1  
 $EndComp
+$Comp
+L PIN_4X2 PIN?
+U 1 1 5835A46C
+P 5550 10400
+F 0 "PIN?" H 5600 10700 60  0000 C CNN
+F 1 "isp_connector" H 5600 10150 60  0000 C CNN
+F 2 "" H 5550 10400 60  0000 C CNN
+F 3 "" H 5550 10400 60  0000 C CNN
+	1    5550 10400
+	1    0    0    -1  
+$EndComp
+Text GLabel 5250 10250 0    60   UnSpc ~ 0
+isp_rst
+Text GLabel 5250 10550 0    60   UnSpc ~ 0
+isp_sck
+Text GLabel 5250 10450 0    60   UnSpc ~ 0
+isp_miso
+Text GLabel 5250 10350 0    60   UnSpc ~ 0
+isp_mosi
+$Comp
+L +5V #PWR?
+U 1 1 5835A869
+P 5900 10250
+F 0 "#PWR?" H 5900 10150 50  0001 C CNN
+F 1 "+5V" V 5900 10350 50  0000 C CNN
+F 2 "" H 5900 10250 60  0000 C CNN
+F 3 "" H 5900 10250 60  0000 C CNN
+	1    5900 10250
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5835AA04
+P 5900 10700
+F 0 "#PWR?" H 5900 10800 50  0001 C CNN
+F 1 "GND" H 5900 10550 50  0000 C CNN
+F 2 "" H 5900 10700 60  0000 C CNN
+F 3 "" H 5900 10700 60  0000 C CNN
+	1    5900 10700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5450 10350 5250 10350
+Wire Wire Line
+	5450 10450 5250 10450
+Wire Wire Line
+	5450 10550 5250 10550
+Wire Wire Line
+	5700 10250 5900 10250
+NoConn ~ 5700 10450
+Wire Wire Line
+	5700 10550 5900 10550
+Wire Wire Line
+	5900 10550 5900 10700
+Wire Wire Line
+	5450 10250 5250 10250
+NoConn ~ 5700 10350
+$Comp
+L +5V #PWR?
+U 1 1 5835DBE3
+P 12300 4900
+F 0 "#PWR?" H 12300 4800 50  0001 C CNN
+F 1 "+5V" V 12300 5000 50  0000 C CNN
+F 2 "" H 12300 4900 60  0000 C CNN
+F 3 "" H 12300 4900 60  0000 C CNN
+	1    12300 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L RES R?
+U 1 1 5835DC20
+P 12300 6150
+F 0 "R?" H 12300 6250 60  0000 C CNN
+F 1 "10k" H 12300 6150 60  0000 C CNN
+F 2 "" H 12300 6150 60  0000 C CNN
+F 3 "" H 12300 6150 60  0000 C CNN
+	1    12300 6150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	12300 4900 12300 5900
+Wire Wire Line
+	12300 6400 12300 6650
+Wire Wire Line
+	12100 6650 13150 6650
+Connection ~ 12300 6650
+$Comp
+L LED LED?
+U 1 1 5835F72C
+P 3950 10450
+F 0 "LED?" H 3900 10650 60  0000 C CNN
+F 1 "LED" H 3950 10200 60  0000 C CNN
+F 2 "" H 3950 10450 60  0000 C CNN
+F 3 "" H 3950 10450 60  0000 C CNN
+	1    3950 10450
+	1    0    0    -1  
+$EndComp
+$Comp
+L RES R?
+U 1 1 5835F7CD
+P 3250 10450
+F 0 "R?" H 3250 10550 60  0000 C CNN
+F 1 "200" H 3250 10450 60  0000 C CNN
+F 2 "" H 3250 10450 60  0000 C CNN
+F 3 "" H 3250 10450 60  0000 C CNN
+	1    3250 10450
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 5835F923
+P 2850 10300
+F 0 "#PWR?" H 2850 10200 50  0001 C CNN
+F 1 "+5V" V 2850 10400 50  0000 C CNN
+F 2 "" H 2850 10300 60  0000 C CNN
+F 3 "" H 2850 10300 60  0000 C CNN
+	1    2850 10300
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5835FC39
+P 4400 10650
+F 0 "#PWR?" H 4400 10750 50  0001 C CNN
+F 1 "GND" H 4400 10500 50  0000 C CNN
+F 2 "" H 4400 10650 60  0000 C CNN
+F 3 "" H 4400 10650 60  0000 C CNN
+	1    4400 10650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2850 10300 2850 10450
+Wire Wire Line
+	2850 10450 3000 10450
+Wire Wire Line
+	3500 10450 3700 10450
+Wire Wire Line
+	4200 10450 4400 10450
+Wire Wire Line
+	4400 10450 4400 10650
+Text GLabel 12900 5350 0    60   UnSpc ~ 0
+motor_v_hi
+Text GLabel 12900 6950 0    60   UnSpc ~ 0
+motor_v_lo
+Text GLabel 12900 7150 0    60   UnSpc ~ 0
+motor_w_hi
+Text GLabel 12900 7050 0    60   UnSpc ~ 0
+motor_w_lo
+NoConn ~ 13150 7550
+Text GLabel 12900 5150 0    60   UnSpc ~ 0
+pwm_input
+Wire Wire Line
+	12900 5150 13150 5150
+Wire Wire Line
+	12900 6850 13150 6850
+Wire Wire Line
+	12900 6950 13150 6950
+Wire Wire Line
+	12900 7050 13150 7050
+Wire Wire Line
+	13150 5250 12900 5250
+Wire Wire Line
+	13150 5350 12900 5350
+Wire Wire Line
+	13150 7150 12900 7150
 $EndSCHEMATC
