@@ -1,3 +1,0 @@
-[submodule "firmware/avr-toolbox"]
-	path = firmware/avr-toolbox
-	url = https://github.com/sndrz/avr-toolbox
