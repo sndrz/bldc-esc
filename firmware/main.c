@@ -38,20 +38,16 @@
 #define	W_HI_REG    TCCR1A
 #define	W_HI_BIT	COM1A1
 
-#define	U_LO_DDR	DDRB
-#define	U_LO_PRT	PORTB
+#define	LO_DDR	    DDRB
+#define	LO_PRT	    PORTB
 #define	U_LO_BIT	1
-#define	V_LO_DDR	DDRB
-#define	V_LO_PRT	PORTB
-#define	V_LO_BIT	1
-#define	W_LO_DDR	DDRB
-#define	W_LO_PRT	PORTB
-#define	W_LO_BIT	1
+#define	V_LO_BIT	2
+#define	W_LO_BIT	3
 
 /* PWM input pin */
 
-#define	IN_PWM_DDR	DDRA
-#define	IN_PWM_PRT	PORTA
+#define	IN_PWM_DDR	DDRB
+#define	IN_PWM_PRT	PORTB
 #define	IN_PWM_BIT	1
 
 #define REVEMF_COUNTER_MAX  200
@@ -66,12 +62,12 @@
 #define W_HI_ON     ( W_HI_REG |=  _BV(W_HI_BIT) );
 #define W_HI_OFF    ( W_HI_REG &= ~_BV(W_HI_BIT) );
 
-#define U_LO_ON     ( U_LO_PRT |=  _BV(U_LO_BIT) );
-#define U_LO_OFF    ( U_LO_PRT &= ~_BV(U_LO_BIT) );
-#define V_LO_ON     ( V_LO_PRT |=  _BV(V_LO_BIT) );
-#define V_LO_OFF    ( V_LO_PRT &= ~_BV(V_LO_BIT) );
-#define W_LO_ON     ( W_LO_PRT |=  _BV(W_LO_BIT) );
-#define W_LO_OFF    ( W_LO_PRT &= ~_BV(W_LO_BIT) );
+#define U_LO_ON     ( LO_PRT |=  _BV(U_LO_BIT) );
+#define U_LO_OFF    ( LO_PRT &= ~_BV(U_LO_BIT) );
+#define V_LO_ON     ( LO_PRT |=  _BV(V_LO_BIT) );
+#define V_LO_OFF    ( LO_PRT &= ~_BV(V_LO_BIT) );
+#define W_LO_ON     ( LO_PRT |=  _BV(W_LO_BIT) );
+#define W_LO_OFF    ( LO_PRT &= ~_BV(W_LO_BIT) );
 
 #define STOP_MOTOR  U_HI_OFF; V_HI_OFF; W_HI_OFF; U_LO_OFF; V_LO_OFF; W_LO_OFF;
 
@@ -96,9 +92,9 @@ void initialize() {
 
     /* Set up IO ports */
 
-    U_LO_DDR |= _BV(U_LO_BIT);
-    V_LO_DDR |= _BV(V_LO_BIT);
-    W_LO_DDR |= _BV(W_LO_BIT);
+    LO_DDR |= _BV(U_LO_BIT);
+    LO_DDR |= _BV(V_LO_BIT);
+    LO_DDR |= _BV(W_LO_BIT);
 
     IN_PWM_DDR &= ~_BV(IN_PWM_BIT);
     IN_PWM_PRT |=  _BV(IN_PWM_BIT);
