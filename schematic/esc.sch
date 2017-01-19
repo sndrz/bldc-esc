@@ -17,6 +17,7 @@ LIBS:speakers
 LIBS:transform
 LIBS:transist
 LIBS:wireless
+LIBS:esc-cache
 EELAYER 25 0
 EELAYER END
 $Descr A3 16535 11693
@@ -36,7 +37,7 @@ L PIN_3X1 PIN?
 U 1 1 582B1AC5
 P 8250 10250
 F 0 "PIN?" H 8500 10250 60  0000 C CNN
-F 1 "low_input" H 8600 10050 60  0000 C CNN
+F 1 "pwr_output" H 8600 10050 60  0000 C CNN
 F 2 "" H 8200 10250 60  0000 C CNN
 F 3 "" H 8200 10250 60  0000 C CNN
 	1    8250 10250
@@ -69,7 +70,7 @@ L PIN_2X1 PIN?
 U 1 1 582EFFC0
 P 9200 10250
 F 0 "PIN?" H 9410 10250 60  0000 C CNN
-F 1 "hi_input" H 9500 10150 60  0000 C CNN
+F 1 "pwr_input" H 9500 10150 60  0000 C CNN
 F 2 "" H 9150 10250 60  0000 C CNN
 F 3 "" H 9150 10250 60  0000 C CNN
 	1    9200 10250
@@ -159,7 +160,7 @@ Wire Wire Line
 Wire Wire Line
 	3100 3600 3100 3750
 Wire Wire Line
-	3700 3100 3700 3750
+	3700 3100 3700 3900
 Text GLabel 3900 2450 2    60   UnSpc ~ 0
 motor_a
 Text GLabel 3500 2450 0    60   UnSpc ~ 0
@@ -186,10 +187,6 @@ Wire Wire Line
 Wire Wire Line
 	2600 2500 2400 2500
 Connection ~ 3100 2950
-Text GLabel 1700 2500 0    60   UnSpc ~ 0
-motor_u_hi
-Text GLabel 1700 2950 0    60   UnSpc ~ 0
-motor_u_lo
 Wire Wire Line
 	1900 2500 1700 2500
 Wire Wire Line
@@ -292,10 +289,6 @@ Text GLabel 12900 6050 0    60   UnSpc ~ 0
 adc_u
 Text GLabel 6750 10250 0    60   UnSpc ~ 0
 motor_a
-Text GLabel 12900 6850 0    60   UnSpc ~ 0
-motor_u_lo
-Text GLabel 12900 5250 0    60   UnSpc ~ 0
-motor_u_hi
 $Comp
 L ATMEGA88PA-AU U?
 U 1 1 58318AF0
@@ -409,7 +402,7 @@ F 3 "" H 8100 10100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 8050 10350 0    60   UnSpc ~ 0
-pwm_input
+control_pwm
 Wire Wire Line
 	8250 10250 8100 10250
 Wire Wire Line
@@ -510,74 +503,6 @@ Wire Wire Line
 	9200 10350 9050 10350
 Wire Wire Line
 	9050 10350 9050 10650
-$Comp
-L GNDPWR #PWR?
-U 1 1 5834B67F
-P 9050 10650
-F 0 "#PWR?" H 9050 10450 50  0001 C CNN
-F 1 "GNDPWR" H 9050 10520 50  0000 C CNN
-F 2 "" H 9050 10600 60  0000 C CNN
-F 3 "" H 9050 10600 60  0000 C CNN
-	1    9050 10650
-	1    0    0    -1  
-$EndComp
-$Comp
-L PWR_FLAG #FLG?
-U 1 1 5834B8C3
-P 11450 10200
-F 0 "#FLG?" H 11450 10400 50  0001 C CNN
-F 1 "PWR_FLAG" H 11450 10300 50  0000 C CNN
-F 2 "" H 11450 10200 60  0000 C CNN
-F 3 "" H 11450 10200 60  0000 C CNN
-	1    11450 10200
-	1    0    0    -1  
-$EndComp
-$Comp
-L GNDPWR #PWR?
-U 1 1 5834B919
-P 11450 10400
-F 0 "#PWR?" H 11450 10200 50  0001 C CNN
-F 1 "GNDPWR" H 11450 10270 50  0000 C CNN
-F 2 "" H 11450 10350 60  0000 C CNN
-F 3 "" H 11450 10350 60  0000 C CNN
-	1    11450 10400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	11450 10200 11450 10400
-$Comp
-L GNDPWR #PWR?
-U 1 1 5834B9B1
-P 3700 3750
-F 0 "#PWR?" H 3700 3550 50  0001 C CNN
-F 1 "GNDPWR" H 3700 3620 50  0000 C CNN
-F 2 "" H 3700 3700 60  0000 C CNN
-F 3 "" H 3700 3700 60  0000 C CNN
-	1    3700 3750
-	1    0    0    -1  
-$EndComp
-$Comp
-L GNDPWR #PWR?
-U 1 1 5834BB04
-P 3100 3750
-F 0 "#PWR?" H 3100 3550 50  0001 C CNN
-F 1 "GNDPWR" H 3100 3620 50  0000 C CNN
-F 2 "" H 3100 3700 60  0000 C CNN
-F 3 "" H 3100 3700 60  0000 C CNN
-	1    3100 3750
-	1    0    0    -1  
-$EndComp
-$Comp
-L GNDPWR #PWR?
-U 1 1 5834BB3C
-P 2850 3750
-F 0 "#PWR?" H 2850 3550 50  0001 C CNN
-F 1 "GNDPWR" H 2850 3620 50  0000 C CNN
-F 2 "" H 2850 3700 60  0000 C CNN
-F 3 "" H 2850 3700 60  0000 C CNN
-	1    2850 3750
-	1    0    0    -1  
-$EndComp
 $Comp
 L PIN_4X2 PIN?
 U 1 1 5835A46C
@@ -718,19 +643,137 @@ Wire Wire Line
 	4200 10450 4400 10450
 Wire Wire Line
 	4400 10450 4400 10650
-Text GLabel 12900 5350 0    60   UnSpc ~ 0
-motor_v_hi
-Text GLabel 12900 6950 0    60   UnSpc ~ 0
-motor_v_lo
-Text GLabel 12900 7150 0    60   UnSpc ~ 0
-motor_w_hi
-Text GLabel 12900 7050 0    60   UnSpc ~ 0
-motor_w_lo
 NoConn ~ 13150 7550
 Text GLabel 12900 5150 0    60   UnSpc ~ 0
-pwm_input
+control_pwm
 Wire Wire Line
 	12900 5150 13150 5150
+$Comp
+L m74hc08 D?
+U 1 1 587CAA73
+P 2400 8000
+F 0 "D?" H 2250 8700 60  0000 C CNN
+F 1 "m74hc08" H 2400 7250 60  0000 C CNN
+F 2 "" H 2350 8250 60  0001 C CNN
+F 3 "" H 2350 8250 60  0001 C CNN
+	1    2400 8000
+	1    0    0    -1  
+$EndComp
+Text GLabel 1750 7500 0    60   UnSpc ~ 0
+motor_uhi_en
+$Comp
+L GND #PWR?
+U 1 1 587CCB03
+P 2850 8900
+F 0 "#PWR?" H 2850 9000 50  0001 C CNN
+F 1 "GND" H 2850 8750 50  0000 C CNN
+F 2 "" H 2850 8900 60  0000 C CNN
+F 3 "" H 2850 8900 60  0000 C CNN
+	1    2850 8900
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 587CD2B6
+P 2850 7250
+F 0 "#PWR?" H 2850 7150 50  0001 C CNN
+F 1 "+5V" V 2850 7350 50  0000 C CNN
+F 2 "" H 2850 7250 60  0000 C CNN
+F 3 "" H 2850 7250 60  0000 C CNN
+	1    2850 7250
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 587D064B
+P 9050 10650
+F 0 "#PWR?" H 9050 10750 50  0001 C CNN
+F 1 "GND" H 9050 10500 50  0000 C CNN
+F 2 "" H 9050 10650 60  0000 C CNN
+F 3 "" H 9050 10650 60  0000 C CNN
+	1    9050 10650
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 587D0A19
+P 3700 3900
+F 0 "#PWR?" H 3700 4000 50  0001 C CNN
+F 1 "GND" H 3700 3750 50  0000 C CNN
+F 2 "" H 3700 3900 60  0000 C CNN
+F 3 "" H 3700 3900 60  0000 C CNN
+	1    3700 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2850 3750 3700 3750
+Connection ~ 3100 3750
+Connection ~ 3700 3750
+Wire Wire Line
+	2700 7400 2850 7400
+Wire Wire Line
+	2850 7400 2850 7250
+Wire Wire Line
+	2700 8650 2850 8650
+Wire Wire Line
+	2850 8650 2850 8900
+Text GLabel 1750 7850 0    60   UnSpc ~ 0
+motor_vhi_en
+Text GLabel 1750 8200 0    60   UnSpc ~ 0
+motor_whi_en
+Text GLabel 1750 7400 0    60   UnSpc ~ 0
+motor_pwm
+Text GLabel 12900 5250 0    60   UnSpc ~ 0
+motor_pwm
+Wire Wire Line
+	12900 5250 13150 5250
+Wire Wire Line
+	1750 7400 2100 7400
+Wire Wire Line
+	1950 7400 1950 8100
+Wire Wire Line
+	1950 7750 2100 7750
+Connection ~ 1950 7400
+Wire Wire Line
+	1950 8100 2100 8100
+Connection ~ 1950 7750
+Wire Wire Line
+	1750 7500 2100 7500
+Wire Wire Line
+	1750 7850 2100 7850
+Wire Wire Line
+	1750 8200 2100 8200
+Text GLabel 12900 6850 0    60   UnSpc ~ 0
+motor_uhi_en
+Text GLabel 12900 6950 0    60   UnSpc ~ 0
+motor_vhi_en
+Text GLabel 12900 7050 0    60   UnSpc ~ 0
+motor_whi_en
+Text GLabel 12900 7150 0    60   UnSpc ~ 0
+motor_ulo_en
+Text GLabel 12900 7250 0    60   UnSpc ~ 0
+motor_vlo_en
+Text GLabel 12900 7350 0    60   UnSpc ~ 0
+motor_wlo_en
+Text GLabel 1700 2950 0    60   UnSpc ~ 0
+motor_ulo_en
+Text GLabel 1750 7600 0    60   UnSpc ~ 0
+motor_u_pwm
+Wire Wire Line
+	1750 7600 2100 7600
+Text GLabel 1700 2500 0    60   UnSpc ~ 0
+motor_u_pwm
+Text GLabel 1750 7950 0    60   UnSpc ~ 0
+motor_v_pwm
+Text GLabel 1750 8300 0    60   UnSpc ~ 0
+motor_w_pwm
+Wire Wire Line
+	1750 7950 2100 7950
+Wire Wire Line
+	1750 8300 2100 8300
+NoConn ~ 2100 8450
+NoConn ~ 2100 8550
+NoConn ~ 2100 8650
 Wire Wire Line
 	12900 6850 13150 6850
 Wire Wire Line
@@ -738,9 +781,29 @@ Wire Wire Line
 Wire Wire Line
 	12900 7050 13150 7050
 Wire Wire Line
-	13150 5250 12900 5250
+	12900 7150 13150 7150
 Wire Wire Line
-	13150 5350 12900 5350
+	12900 7250 13150 7250
 Wire Wire Line
-	13150 7150 12900 7150
+	12900 7350 13150 7350
+NoConn ~ 13150 5350
+NoConn ~ 13150 5750
+NoConn ~ 13150 5850
+NoConn ~ 13150 6350
+NoConn ~ 13150 6450
+NoConn ~ 13150 6550
+NoConn ~ 14800 5550
+NoConn ~ 14800 5750
+NoConn ~ 14800 5850
+$Comp
+L mc34063a U?
+U 1 1 587DE70E
+P 4300 7900
+F 0 "U?" H 4150 8300 60  0000 C CNN
+F 1 "mc34063a" H 4350 7500 60  0000 C CNN
+F 2 "" H 4250 8150 60  0001 C CNN
+F 3 "" H 4250 8150 60  0001 C CNN
+	1    4300 7900
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
